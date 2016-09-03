@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+/************************************************
+ ************************************************
+ 	General CSS file
+ 	Author: Paul Cyr
+ ************************************************
+ ************************************************/
+
+@import 'resources/variables';
+@import 'resources/mixins';
+@import 'elements';
+@import 'bootstrap-override';
+@import 'nav';
+@import 'forms';
+@import 'tables';
+@import 'classes';
+@import '#header';
+@import '#main';
+@import '#footer';

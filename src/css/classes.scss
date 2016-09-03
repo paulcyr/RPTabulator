@@ -1,0 +1,258 @@
+/************************
+ * General Classes
+ ************************/
+
+.alert {
+	.message { font-weight: bold; }
+	*:not(p).details { margin-top: 5px; }
+	.code { font-size: small; }
+}
+
+.aria-description {
+	position: absolute;
+	top: auto;
+	left: -50vw;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+.btn { text-decoration: none; }
+
+.container {
+	position: relative;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.icon {
+
+	position: relative;
+	display: inline-block;
+	height: 1.625em;
+	margin: 0 auto;
+	box-sizing: content-box;
+
+	&.alt-hidden span.image { margin-right: 0.25em; }
+
+	.image {
+		display: inline-block;
+		height: 100%;
+		background-repeat: no-repeat;
+
+		@media print { width: 1.625em; }
+
+		.alt {
+			height: 1em;
+			padding: 0 (13em/32) 0 0.375em;
+		    line-height: 1em;
+
+			@media print { display: none; }
+		}
+	}
+
+	.tooltip {
+		position: absolute;
+		bottom: -2em;
+		left: 50%;
+    	transform: translateX(-50%);
+		display: none;
+		opacity: 1;
+		width: auto;
+		height: auto;
+		padding: 0.25em (0.3em + (3em/32)) (3em/16) 0.3em;
+		overflow: hidden;
+		background: map-get($colors, 100);
+		border: (1em/12) solid lighten(map-get($colors, 100), 12.2%);
+		border-radius: (2em/12);
+		font-size: (13rem/16);
+		line-height: 1.375;
+		text-decoration: none;
+		white-space: normal;  
+	}
+
+	&:hover, &:active, &:focus {
+		text-decoration: none;
+
+		.alt { text-decoration: underline; }
+	}
+}
+$images: (
+	contact: (
+		elements: (email, phone, linkedin, twitter),
+		colors: (
+			fff: (states: 1, sizes: (22,24,64)),
+			'782bbb': (states: 2, sizes: 26),
+		)
+	),
+	page-front: (
+		elements: (cloud, computer, phone, printer, server),
+		colors: (
+			'270e3d': (states: 1, sizes: 64),
+		)
+	),
+);
+@each $type, $type-values in $images {
+	@each $color, $color-values in map-get($type-values, colors) {
+
+		@each $size in map-get($color-values, sizes) {
+			.icon-type-#{$type} {
+				&.icon-color-#{$color}, .icon-color-#{$color} {
+					&.icon-size-#{$size}, .icon-size-#{$size} {
+						&.icon, .icon {
+							.image { background-image: url(#{$imagePath}#{$type}-#{$color}-#{$size}.png); }
+							&.alt-hidden .image { width: 1.625em; }
+						}
+					}
+				}
+			}
+		}
+
+		$elements: map-get($type-values, elements);
+
+		@for $i from 1 through length($elements) {
+
+			$posY: (($i - 1)/(length($elements) - 1))*100%;
+
+			.icon-type-#{$type} {
+				&.icon-color-#{$color}, .icon-color-#{$color} {
+					&.icon, .icon {
+						&.#{nth($elements, $i)} {
+
+							.image {
+								background-position: 0 $posY;
+								background-size: map-get($color-values, states)*100%;
+							}
+
+							@if map-get($color-values, states) > 1 {
+
+								&:active {
+									.image { background-position: 100% $posY; }
+								}
+
+								$posX: 100%;
+
+								@if map-get($color-values, states) == 3 { $posX: 50%; }
+
+								&:hover, &:focus{
+									.image { background-position: $posX $posY; }
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.loading-circles {
+	margin: 1em auto;
+	width: 2.5em;
+	height: 2.5em;
+	position: relative;
+
+	.loading-circle {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+
+		&::before {
+			content: '';
+			display: block;
+			margin: 0 auto;
+			width: 8%;
+			height: 16%;
+			background-color: #333;
+			border-radius: 100%;
+			$animation: loading-circleFadeDelay 1.2s infinite ease-in-out both;
+			-webkit-animation: $animation;
+			animation: $animation;
+		}
+
+		@for $i from 2 through 12 {
+
+			&.loading-circle-#{$i} {
+				$transform: rotate(30deg*($i - 1));
+				-webkit-transform: $transform;
+				-ms-transform: $transform;
+				transform: $transform;
+
+				&::before {
+					$animation-delay: -1.1s + 0.1s * ($i - 2);
+					-webkit-animation-delay: $animation-delay;
+					animation-delay: $animation-delay; 
+				}
+			}
+		}
+	}
+}
+
+@-webkit-keyframes loading-circleFadeDelay {
+	0%, 39%, 100% { opacity: 0; }
+	40% { opacity: 1; }
+}
+
+@keyframes loading-circleFadeDelay {
+	0%, 39%, 100% { opacity: 0; }
+	40% { opacity: 1; } 
+}
+
+.mono {
+	font-family: "Courier New", Courier, monospace;
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	height: 100%;
+	width: 100%;
+	background: transparentize(
+		map-get(map-get($colors, 'accent'), 500),
+		0.15
+	);
+	color: map-get($colors, 'text');
+	font-size: 150%;
+
+	&.nav {
+		position: absolute;
+		z-index:950;
+	}
+
+	&.solid {
+		background: map-get(map-get($colors, 'accent'), 500);
+	}
+
+	@media (min-width: 520px) and (min-height: 520px), print { font-size: 162.5%; }
+
+	@media print { display: none; }
+
+	a {
+		&, &:hover, &:focus { color: map-get($colors, 'text'); }
+	}
+}
+
+dfn.required,
+.required::before {
+	font-weight: bold;
+	color: map-get($colors, 'error');
+}
+
+.required::before {
+	content: '*';
+	margin-right: 0.25em;
+}
+
+dfn.required::before {
+	content: none;
+	margin-right: 0;
+}
+
+samp {
+	.heading { color: hsl(189, 82.9%, 64.9%); }
+	.prompt { color: hsl(79.9, 76.7%, 52.9%); }
+}

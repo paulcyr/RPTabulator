@@ -1,0 +1,86 @@
+/************************
+ * Forms
+ ************************/
+
+form {
+	
+	&:not(:first-child) { margin-top: 1.25em; }
+
+	fieldset {
+
+		&:not(:first-of-type) legend { padding-top: 1.25em; }
+
+		&.submit .alert { margin-top: 1em; }
+
+		&.buttons {
+			margin-right: -0.5em;
+			margin-left: -0.5em;
+
+			input[type="submit"], button {
+				margin-right: 0.5em;
+				margin-left: 0.5em;
+			}
+		}
+
+		legend {
+			padding-top: 0.5em;
+			margin-bottom: 0.25em;
+		}
+
+		.form-group {
+			margin-top: 1em;
+
+			@media print { page-break-inside: avoid; }
+
+			.alert {
+				margin-top: 0.75em;
+			}
+		}
+	}
+
+	input[type="submit"], button {
+		min-width: 8em;
+	}
+
+	@media (min-width: 1024px), print {
+		.checkbox, .radio {
+			margin-right: 0.5em;
+			margin-left: 0.5em;
+		}
+	}
+
+	.control-label {
+		white-space: pre;
+	}
+
+	.help-block.has-error, .form-control { max-width: 870px; }
+
+	.help-block.has-error {
+		margin-top: 0.25em;
+		padding: 0.25em 0.6em;
+		color: map-get($colors, 'text');
+		background-color: map-get($colors, 'error');
+		border-radius: 0.25em;
+		font-size: 87.5%;
+		font-weight: 300;
+		font-style: oblique;
+	}
+
+	.form-control {
+		width: 100%;
+    	box-sizing: border-box;
+		margin-top: 0.25em;
+		margin-bottom: 0;
+		padding: (8em/16) (12em/16) (6em/16);
+		font-size: 100%;
+
+		&:not(textarea) {
+			height: 2.5em;
+		}
+	}
+
+	.note {
+		font-size: 81.25%;
+		font-style: oblique;
+	}
+}

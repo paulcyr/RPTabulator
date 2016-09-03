@@ -1,0 +1,60 @@
+/************************
+ * Page: Election
+ ************************/
+@import '../resources/variables';
+@import '../resources/mixins';
+
+body > #main > .container > .content {
+
+	border-top: (1em/16) solid;
+    padding-top: 1.5em;
+
+	.container {
+		
+		@include flex((display: flex, flex-wrap: wrap));
+		margin-top: -2em;
+		margin-right: -2em;
+		margin-left: -2em;
+
+		> * {
+			margin-top: 2em;
+			margin-right: 2em;
+			margin-left: 2em;
+		}
+
+		.col-left { min-width: 35%;
+
+			.candidate-controls { margin-top: 1em; }
+		}
+
+		.col-right {
+			flex-grow: 1;
+
+			table.table {
+				margin-top: -0.5em;
+
+				thead, tbody {
+					> tr {
+						>th, >td {
+							&:nth-child(2) {
+								text-align: center;
+								
+								button {
+									font-size: 100%;
+									line-height: 1.6;
+									padding: 0 0.5em;
+								}
+							}
+						}
+					}
+				}
+
+				tbody > tr {
+					&:hover, &:focus, &:active {
+						background: hsl(0, 0%, 92.8%);
+					}
+				}
+			}
+		}
+	}
+}
