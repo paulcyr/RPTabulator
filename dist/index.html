@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+  <meta charset="utf-8" />
+  <script>
+    // SPECIFY RELATIVE FOLDER PATH FOR 'window.path' HERE
+    // No starting or trailing slashes.
+    // e.g. if URL is http://mysite.com/programs/RPTabulator then the value of 'window.path'
+    // should be 'programs/RainkedPairs' (with quotation marks).
+    window.path = 'RPTabulator';
+
+    window.url = { REL_PATH: '/' + window.path + '/' }
+    window.url.ROOT = document.location.protocol + '//' + document.location.hostname + window.url.REL_PATH;
+    window.url.ASSETS = window.url.ROOT + 'assets/';
+    window.url.JS = window.url.ASSETS + 'js/';
+
+    (() => {
+      let scriptElm = document.createElement('script');
+      scriptElm.src = window.url.JS + '/requireJS/require.min.js';
+      scriptElm.setAttribute('data-main', window.url.JS + 'main.min');
+      scriptElm.setAttribute('async', 'true');
+      document.getElementsByTagName('head')[0].appendChild(scriptElm);
+    })();
+  </script>
+  <title>Ranked Pairs Tabulator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- CSS -->
+</head>
+<body>
+  <header id="header" role="banner">
+  	<div class="container clearfix">
+      <nav id="header-nav-super" class="super icon-color-fff icon-size-22" role="complementary">
+      	<div class="container clearfix"></div>
+      </nav>
+      <nav id="header-nav-primary" class="primary" role="navigation">
+        <div class="container clearfix">
+      	 <a class="toggle" style="display:none;">☰ Menu</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="container clearfix">
+      <h1 class="page-title"></h1>
+      <h2 class="page-subtitle"></h2>
+      <div class="content">
+        <div class="loading-circles" title="Loading" style="text-align: center;">
+          <div class="loading-circle loading-circle-1" ></div>
+          <div class="loading-circle loading-circle-2" ></div>
+          <div class="loading-circle loading-circle-3" ></div>
+          <div class="loading-circle loading-circle-4" ></div>
+          <div class="loading-circle loading-circle-5" ></div>
+          <div class="loading-circle loading-circle-6" ></div>
+          <div class="loading-circle loading-circle-7" ></div>
+          <div class="loading-circle loading-circle-8" ></div>
+          <div class="loading-circle loading-circle-9" ></div>
+          <div class="loading-circle loading-circle-10" ></div>
+          <div class="loading-circle loading-circle-11" ></div>
+          <div class="loading-circle loading-circle-12" ></div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer id="footer">
+  	<div class="container clearfix">
+        <!-- These menus have aria-hidden="true" property because their content is provided in #header (per WAI-ARIA 1.0 c.6 §6). -->
+    	<nav id="footer-nav-super" class="super icon-color-fff icon-size-64" role="complementary" aria-hidden="true">
+            <div class="container clearfix"></div>
+    	</nav>
+    	<nav id="footer-nav-primary" class="primary" role="navigation" aria-hidden="true">
+            <div class="container clearfix"></div>
+    	</nav>
+    </div>
+  </footer>
+  <div id="scripts"></div>
+</body>
+</html>

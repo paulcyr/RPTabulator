@@ -1,0 +1,155 @@
+/************************
+ * #header
+ ************************/
+
+#header {
+	$primaryHeight: 2.125em;
+	$box-shadow: 0 0.0625em 0.125em 0 map-get($colors, 'shadow');
+	$color: map-get($colors, 'text');
+
+	position: relative;
+	height: $primaryHeight;
+	
+
+	@media (min-width: 1024px), print {
+		height: 3.25em;
+		box-shadow: $box-shadow;
+	}
+
+	@media print {
+		a[href]:after { content: none; }
+	}
+
+	> .container {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
+
+	.primary {
+		height: $primaryHeight;
+		color: map-get($colors, 'text');
+		background-color: map-get($colors, 500);
+
+		@media (min-width: 1024px), print {
+			height: 3.25em;
+			text-align: end;
+			text-align: right;
+			border-bottom: 0.0625em solid map-get($colors, 700);
+		}
+
+		@media screen {
+			
+			&.fixed {
+				position: fixed;
+				top: 0;
+				z-index: 999;
+				width: 100%;
+				box-shadow: $box-shadow;
+
+				@media (min-width: 1024px) {
+					height: auto;
+					border-bottom: 0;
+
+					&:not(.height-variable) { height: 2.125em; }
+				}
+		
+				.menu {
+					height: calc(100vh - #{$primaryHeight});
+
+					@media (min-width: 1024px) { height: auto; }
+				}
+			}
+		}
+
+		.container {
+
+			@media (min-width: 1280px), print {
+				$maxWidthPadding: calc(50% - 640px + 6em);
+				padding-right: $maxWidthPadding;
+				padding-left: $maxWidthPadding;
+			}
+
+			.toggle, .menu {
+				&:focus, &:active { outline: none; }
+			}
+
+			.toggle {
+				position: absolute;
+				z-index: 999;
+				display: block;
+				width: 100%;
+				padding: 0.5625em 0.625em;
+				box-shadow: 0 0.0625em 0.125em 0 map-get($colors, 'shadow');
+
+				&:hover, &:focus, &:active {
+					background-color: map-get(map-get($colors, 'accent'), 700);
+				}
+
+				@media (min-width: 1024px), print { display: none; }
+			}
+
+			.menu {
+				position: absolute;
+				top: 2.125em;
+				z-index: 99;
+				visibility: hidden;
+				@include transform(translateX(-100%));
+				@include transition(transform 0.25s, visibility 0s 0.25s);
+				@include flex((
+					display: flex,
+					align-content: flex-start,
+					align-items: flex-start
+				));
+				min-width: 12em;
+				width: 33.3%;
+				overflow-x: hidden;
+				overflow-y: auto;
+				background-color: map-get(map-get($colors, 'accent'), 500);
+
+				&.visible {
+					visibility: visible;
+					@include transform(translateX(0%));
+					@include transition(transform 0.25s);
+				}
+
+				@media (min-width: 1024px), print {
+					position: relative;
+					top: 0;
+					transform: none;
+					transition: initial;
+					visibility: visible;
+					@include flex((justify-content: flex-end));
+					width: auto;
+					height: auto;
+					margin-right: 2.25%;
+					margin-left: 2.25%;
+					overflow: inherit;
+					background: none;
+					text-align: inherit;
+				}
+
+				[role="menuitem"] {
+					width: 100%;
+					padding: 1em 5em 1em 1.65em;
+					box-sizing: border-box;
+					border-bottom: 1px solid hsla(0, 0%, 0%, 0.5);
+					border-radius: 0;
+
+					&:hover, &:focus, &:active, &.current-page { animation-duration: 250ms; }
+
+					&:hover, &:focus, &:active { background-color: transparentize(black, 0.75); }
+
+					&.current-page { background-color: transparentize(black, 0.875); }
+
+					@media (min-width: 1024px), print {
+						width: auto;
+						padding: 1em 2em;
+						font-size: 112.5%;
+						border-bottom: none;
+					}
+				}
+			}
+		}
+	}
+}

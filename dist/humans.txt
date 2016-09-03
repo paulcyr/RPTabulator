@@ -1,0 +1,31 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+/* TEAM */
+	Developer & Designer: Paul Cyr
+	Contact: web [at] thisispaul.ca
+	LinkedIn: https://ca.linkedin.com/in/paulcyr1/
+	From: Kitchener, Ontario, Canada
+
+/* SITE */
+	Standards: HTML5, CSS3, Javascript (ES6)
+	/* Components */
+		* RequireJS: http://requirejs.org/
+		* jQuery: https://jquery.com/
+		* JavaScript Cookie: https://github.com/js-cookie/js-cookie
+		* AnotherUtility: https://github.com/thisispaulcyr/AnotherUtility
+		* Bootstrap: https://getbootstrap.com/
+		* Lovefield: https://github.com/google/lovefield
+		* DataTables: https://datatables.net/
+			* + Responsive: https://datatables.net/extensions/responsive/
+		* jQuery Validation: http://jqueryvalidation.org/
+	/* Images */
+		LinkedIn: https://brand.linkedin.com/visual-identity/logo
+		Twitter: https://about.twitter.com/company/brand-assets
+	/* Software */
+		Visual Studio Code: https://code.visualstudio.com/
+		WinSCP: https://winscp.net/
+
+		
+	
+	

@@ -1,0 +1,6 @@
+RewriteEngine on
+
+# Does not start with /RPTabulator/assets/
+RewriteCond %{REQUEST_URI} ^\/RPTabulator\/(?!assets\/).+$ 
+# Direct to index.html
+RewriteRule ^ index.html [NC,L]

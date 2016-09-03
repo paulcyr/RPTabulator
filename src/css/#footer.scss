@@ -1,0 +1,122 @@
+/************************
+ * #footer
+ ************************/
+
+#footer {
+
+	@mixin hover($color) {
+		$base: saturate(
+				lighten($color, 28)
+				, 10
+			);
+		&:hover, &:focus, &:active {
+			background-color: transparentize($base, 0.125)
+		}
+
+		&.current-page { background-color: transparentize($base, 0.25); }
+	}
+
+	$background-color: hsl(map-get($hues, 'primary'), 6%, 9.6%);
+
+	$color: map-get($colors, 'text');
+	position: relative;
+	width: 100%;
+	background-color: $background-color;
+	color: $color;
+	text-align: left;
+
+	@media (min-width: 1024px), print { font-size: 93.75%; }
+
+	@media print {
+		a[href]:after { content: none; }
+	}
+
+	[role="menuitem"]:focus, [role="menuitem"]:active {	outline-color: transparentize($color, 0.5); }
+
+	.menu {
+		@include flex((justify-content: center));
+		margin: 0.25em calc(5% - 0.25em);
+
+		[role="menuitem"] {
+			margin: 0.25em;
+		}
+	}
+
+	.super {
+		$background-color: hsl(map-get($hues, 'primary'), 32%, 17.3%);
+		background-color: $background-color;
+		font-size: 1rem;
+
+		.menu [role="menuitem"] {
+			@include flex((flex-grow: 1));
+			margin: 0.25em;
+			padding-top: 0.5em;
+			padding-bottom: 0.5em;
+			text-align: center;
+
+			@include hover($background-color);
+
+			&.icon .alt { font-size: 79.9%; }
+		}
+	}
+
+	.primary {
+		margin: 1em 0;
+		font-size: 87.5%;
+
+		@media (min-width: 1024px), print {
+				width: 90%;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+		@media (min-width: 1280px), print { width: auto; }
+
+		.menu [role="menuitem"] {
+			$size: (13em/16);
+			position: relative;
+			margin: 0.75em 0.75em 0;
+			padding: 0.85em 1em 0.85em (1em+$size*(2/3));
+			border-radius: 0.25em;
+
+			&::before {	
+				content: '//';
+				display: inline-block;
+				position: absolute;
+				top: 0.75em;
+				width: $size;
+				margin-left: -$size;
+				letter-spacing: (-1em/7);
+			}
+
+			@include hover($background-color);
+		}
+	}
+
+	@media (min-width: 1280px), print {
+		$maxWidthPadding: calc(50% - 640px + 6em);
+		
+		.super, .primary {
+			.container {
+				padding-right: $maxWidthPadding;
+				padding-left: $maxWidthPadding;
+			}
+		}
+	}
+
+	.disclosures {
+		padding-top: 4em;
+		color: hsla(0, 0%, 100%, 0.5);
+		font-size: 66.67%;
+		font-weight: lighter;
+		font-style: oblique;
+		letter-spacing: -0.025em;
+		text-align: center;
+
+		a {
+			color: hsla(0, 0%, 100%, 0.5);
+
+			&:hover { color: hsla(0, 0%, 100%, 0.65); }
+		}
+	}
+}

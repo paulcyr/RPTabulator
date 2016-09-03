@@ -1,0 +1,125 @@
+/************************
+ * #main
+ ************************/
+
+#main {
+	@include flex((flex-grow: 1));
+	position: relative;
+
+	@media (min-width: 1024px), print { padding-top: 2em; }
+	@media (min-width: 1536px), print and (orientation: landscape) { padding-top: 3em; }
+	@media print { padding-top: 0; }
+
+	> .container,
+	> .animation-container > .container {
+		@include container;
+
+		@media print {
+			width: 100%;
+			max-width: 1168px;
+			padding: 3.5em 3em;
+		}
+	}
+
+	.intra-page.float {
+		position:fixed;
+		bottom: 0;
+		display: block;
+		visibility: hidden;
+		opacity: 0;
+		@include transition(visibility 0ms 175ms, opacity 175ms ease);
+		font-size: 87.5%;
+		background: transparentize(
+			map-get($colors, 300),
+			0.3
+		);
+		border: 0;
+		color: map-get($colors, 'text');
+		text-align: right;
+
+		&:hover, &:active, &:focus {
+			background-color: transparentize(
+				map-get($colors, 500),
+				0.125
+			);
+		}
+
+		@media (min-width: 1024px), print { font-size: 100%; }
+		@media (min-width: 1280px), print { margin-right: 5em; }
+
+		&.visible {
+			visibility: visible;
+			opacity: 1;
+			@include transition(opacity 175ms ease);
+		}
+
+		&.above-range {
+			position: absolute;
+		}
+
+		&.back-to-top {
+			display: block;
+			padding: 0.5em 1.5em 0.25em 1.6em;
+			border-radius: 0;
+			border-top-right-radius: 0.5em;
+			border-top-left-radius: 0.5em;
+		
+			&::before {
+				content: '';
+				visibility: hidden;
+				opacity: 0;
+				position: absolute;
+				bottom: 0.255em;
+				left: 20%;
+				z-index: 1;
+				width: 60%;
+				height: 1px;
+				box-sizing: border-box;
+				border-bottom: 0.1em solid;
+				@include transition(opacity 175ms ease);
+
+				@media (min-width: 1024px), print { bottom: 0.355em; }
+			}
+
+			&:hover, &:active, &:focus {
+				&::before {
+					visibility: visible;
+					opacity: 1;
+				}
+			}
+
+			@media (min-width: 1024px), print {
+				padding: 0.625em 1.5em 0.375em 1.85em;
+				border-top-right-radius: 0.75em;
+				border-top-left-radius: 0.75em;
+			}
+
+			> * {
+				z-index: 2;
+				display: inline-block;
+			}
+
+			.arrow {
+				position: absolute;
+				bottom: 0.55em;
+				left: 1.2em;
+				transform-origin: 0;
+				$rotation: rotate(90deg);
+				transform: $rotation;
+				-webkit-transform: $rotation;
+				-moz-transform: $rotation;
+				-o-transform: $rotation;
+				-ms-transform: $rotation;
+
+				@media (min-width: 1024px), print {
+					bottom: 0.65em;
+					left: 1.375em;
+				}
+			}
+
+			.text {
+				position: relative;
+			}
+		}
+	}	
+}

@@ -1,0 +1,121 @@
+/************************
+ * Elements
+ ************************/
+
+html, body {
+	height: 100%;
+}
+
+html {
+	background: map-get($colors, 50);
+	font-size: 100%;
+
+	@media print { background: none; }
+}
+body {
+	@include flex((display: flex, flex-direction: column));
+	background: none;
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+	font-weight: lighter;
+	font-size: 100%;
+	line-height: 1.375;
+
+	@media print { font-size: 0.825em; }
+}
+
+a {
+	$color: map-get($colors, 500);
+	border-radius: 0.125em;
+	cursor: pointer;
+	color: $color;
+	text-decoration: underline;
+
+	&:hover, &:active {	color: map-get($colors, 900); }
+	
+	&:focus, &:active {
+		color: inherit;
+		outline-color: transparentize($color, 0.5);
+	}
+	
+	span {
+		vertical-align: middle;
+	}
+
+	@media print {
+		&[href]:after {
+			vertical-align: middle;
+			font-style: oblique;
+		}
+	}
+}
+
+abbr[data-original-title], abbr[title] {
+    border-bottom-color: currentColor;
+}
+
+area, embed, iframe, object, video {
+	display: block;
+	max-width: 100%;
+}
+
+div, header, main, footer {
+	box-sizing: border-box;
+}
+
+form {
+	position: relative;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	margin-top: 1em;
+	&:first-of-type { margin-top: 0; }
+}
+
+h1 {
+	font-size: 187.5%;
+}
+h2 {
+	font-size: 172.92%;
+	font-weight: normal;
+}
+h3 {
+	font-size: 158.33%;
+}
+h4 {
+	font-size: 143.75%;
+	font-weight: normal;
+}
+h5 {
+	font-size: 129.17%;
+}
+h6 {
+	font-size: 114.58%;
+	font-weight: normal;
+}
+
+img { max-width: 100%; }
+
+legend {
+	max-width: 32em;
+	border-bottom-color: map-get($colors, 50);
+}
+
+li {
+	padding-left: 0.5em;
+}
+
+p {
+	margin: 1em 0 0 0;
+	
+	&:first-child { margin-top: 0; }
+	&:last-child { margin-bottom: 0; }
+}
+
+samp {
+	line-height: 1.25;
+}
+
+ul, ol {
+	padding-left: 2em;
+}

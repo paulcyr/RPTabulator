@@ -1,0 +1,86 @@
+/************************
+ * tables
+ ************************/
+
+table, .table {
+	> tbody {
+		> tr {
+			> td {
+				vertical-align: middle;
+			}
+		}
+
+		> tr[data-href] {
+			> td {
+				padding: 0;
+				line-height: inherit;
+
+				> a {
+					display: block;
+					padding: 0.5em;
+					line-height: inherit;
+				}
+			}
+		}
+	}
+
+	&:not(.table) {
+		thead, tbody, tfoot {
+			tr {
+				th, td {
+					padding: 0.25em;
+					
+					&:first-child { padding-left: 0; }
+					&:last-child { padding-right: 0; }
+				}
+			}
+			
+		}
+	}
+}
+
+.dataTables_wrapper {
+
+	table.dataTable {
+
+		thead {
+
+			th {
+
+				&.sorting, &.sorting_asc, &.sorting_desc {
+					position: relative;
+					padding-right: 1.75em;
+					cursor: pointer;
+				}
+				&.sorting::after, &.sorting_asc::after, &.sorting_desc::after {
+					position: absolute;
+					right: 0.5em;
+				}
+				&.sorting::after {
+					content: url(data:image/gif;base64,R0lGODlhCwALAJEAAAAAAP///xUVFf///yH5BAEAAAMALAAAAAALAAsAAAIUnC2nKLnT4or00PvyrQwrPzUZshQAOw==);
+				}
+
+				&.sorting_asc::after {
+					content: url(data:image/gif;base64,R0lGODlhCwALAJEAAAAAAP///xUVFf///yH5BAEAAAMALAAAAAALAAsAAAIRnC2nKLnT4or00Puy3rx7VQAAOw==);
+				}
+
+				&.sorting_desc::after {
+					content: url(data:image/gif;base64,R0lGODlhCwALAJEAAAAAAP///xUVFf///yH5BAEAAAMALAAAAAALAAsAAAIPnI+py+0/hJzz0IruwjsVADs=);
+				}
+			}
+		}
+
+		tbody {
+			tr {
+				&[data-href] {
+					cursor: pointer;
+
+					&:hover, &:focus, &:active {
+						background: hsl(0, 0%, 92.8%);
+					}
+				}
+			}
+		}
+	}
+
+}
